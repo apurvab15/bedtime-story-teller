@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bedtime Story Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+  <div class="moon" aria-hidden="true"></div>
+
+  <main class="app">
+    <!-- Setup form -->
+    <section id="setup-view" class="view active">
+      <header class="hero">
+        <h1>Bedtime Story Generator</h1>
+        <p class="subtitle">Pick three things, set the age and length, and we will tell you a cozy tale.</p>
+      </header>
+
+      <form id="story-form" class="card">
+        <fieldset class="objects-field">
+          <legend>Three objects of interest</legend>
+          <div class="object-row">
+            <label for="object1">Object 1</label>
+            <input type="text" id="object1" name="object1" placeholder="e.g. a red balloon" required maxlength="80">
+          </div>
+          <div class="object-row">
+            <label for="object2">Object 2</label>
+            <input type="text" id="object2" name="object2" placeholder="e.g. a friendly owl" required maxlength="80">
+          </div>
+          <div class="object-row">
+            <label for="object3">Object 3</label>
+            <input type="text" id="object3" name="object3" placeholder="e.g. a warm blanket" required maxlength="80">
+          </div>
+          <button type="button" id="random-btn" class="btn btn-secondary">
+            ✨ Random ideas
+          </button>
+        </fieldset>
+
+        <div class="options-row">
+          <div class="field">
+            <label for="age">Child's age</label>
+            <div class="age-control">
+              <input type="range" id="age" name="age" min="5" max="10" value="7">
+              <output id="age-value">7</output>
+              <span class="age-hint">years old</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <span class="field-label">Story length</span>
+            <div class="length-options" role="radiogroup" aria-label="Story length">
+              <label class="length-option">
+                <input type="radio" name="length" value="short">
+                <span>Short</span>
+              </label>
+              <label class="length-option">
+                <input type="radio" name="length" value="medium" checked>
+                <span>Medium</span>
+              </label>
+              <label class="length-option">
+                <input type="radio" name="length" value="long">
+                <span>Long</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <p id="form-error" class="error-msg" hidden></p>
+
+        <button type="submit" id="generate-btn" class="btn btn-primary">
+          Generate story
+        </button>
+      </form>
+    </section>
+
+    <!-- Loading -->
+    <section id="loading-view" class="view" hidden>
+      <div class="card loading-card">
+        <div class="spinner" aria-hidden="true"></div>
+        <h2>Writing your story…</h2>
+        <p class="loading-detail">Our storyteller is drafting, and the judge is checking it is safe and cozy.</p>
+      </div>
+    </section>
+
+    <!-- Story reader -->
+    <section id="reader-view" class="view" hidden>
+      <header class="reader-header">
+        <button type="button" id="back-btn" class="btn btn-ghost">← New story</button>
+        <p id="judge-badge" class="judge-badge" hidden></p>
+      </header>
+
+      <article class="reader card" aria-live="polite">
+        <div id="story-chunk" class="story-chunk"></div>
+
+        <div class="reader-controls">
+          <button type="button" id="prev-chunk" class="btn btn-icon" aria-label="Previous passage" disabled>
+            ‹
+          </button>
+
+          <button type="button" id="play-btn" class="btn btn-play" aria-label="Read aloud">
+            <span class="play-icon">▶</span>
+            <span class="play-label">Read aloud</span>
+          </button>
+
+          <button type="button" id="next-chunk" class="btn btn-icon" aria-label="Next passage">
+            ›
+          </button>
+        </div>
+
+        <p id="chunk-indicator" class="chunk-indicator"></p>
+      </article>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
