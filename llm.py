@@ -5,8 +5,9 @@ from openai import OpenAI
 
 load_dotenv()
 
-# Set USE_GROQ = False before submitting to switch back to OpenAI gpt-3.5-turbo
-USE_GROQ = True
+# Local testing: USE_GROQ=true in .env (free Groq tier).
+# Submission: USE_GROQ=false so both agents use gpt-3.5-turbo as required.
+USE_GROQ = os.getenv("USE_GROQ", "false").lower() in ("1", "true", "yes")
 
 GROQ_MODEL = "llama-3.1-8b-instant"
 OPENAI_MODEL = "gpt-3.5-turbo"
