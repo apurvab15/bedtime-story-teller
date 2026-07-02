@@ -1,6 +1,6 @@
-<p align="center">
+<!-- p align="center">
   <img src="assets/header.png" alt="A cozy forest at bedtime — moon, stars, and friendly animals" width="100%"/>
-</p>
+</p --->
 
 <h1 align="center">🌙 Bedtime Story Generator</h1>
 
@@ -21,6 +21,34 @@ The core idea is **responsible AI for children** — a storyteller agent writes 
 - **CLI** (`main.py`) — free-text story request, prints result to the terminal
 
 Both paths share the same pipeline in `pipeline.py`.
+
+---
+
+## Examples
+
+### Web UI
+
+**Landing page** — sample stories (no API key needed) and **Create your own story**:
+
+<p align="center">
+  <img src="assets/web-prototype/webpage1.png" alt="Landing page with sample story cards and Create your own story button" width="720"/>
+</p>
+
+**Story reader** — two sentences per passage, read-aloud with word highlighting, judge approval badge:
+
+<p align="center">
+  <img src="assets/web-prototype/webpage2.png" alt="Chunked story reader with Read aloud controls and Approved for bedtime badge" width="720"/>
+</p>
+
+### Sample story output
+
+From [`web/static/data/sample_stories.json`](web/static/data/sample_stories.json) — **Mia and the Floating Blanket** (objects: red balloon, friendly owl, warm blanket · age 6 · medium):
+
+> On a soft purple evening, Mia sat on the hill behind her house with her warm blanket wrapped around her shoulders. The grass felt cool, and the first stars were beginning to blink hello.
+>
+> A friendly owl named Oliver swooped down and landed on a low branch. "Hello, Mia," he hooted gently. "Would you like some company?" Mia smiled and nodded. Oliver told her about the quiet paths he flew over the forest each night.
+
+Tap any sample card on the landing page to read the full story in the reader.
 
 ---
 
@@ -92,13 +120,15 @@ Bedtime Story Generator/
 ├── requirements.txt
 ├── .env.example
 ├── assets/
-│   └── header.png         # README banner (add your own)
+│   └── web-prototype/     # README screenshots (webpage1.png, webpage2.png)
 └── web/
     ├── templates/
-    │   └── index.html     # Setup form + chunked story reader
+    │   └── index.html     # Landing page, form + chunked story reader
     └── static/
         ├── css/style.css  # Bedtime theme (stars, moon, dark purple palette)
-        └── js/app.js      # Random objects, API, read-aloud highlighting
+        ├── data/
+        │   └── sample_stories.json  # Pre-written sample stories for demo
+        └── js/app.js      # Sample cards, API, read-aloud highlighting
 ```
 
 | File | Role |
@@ -106,7 +136,8 @@ Bedtime Story Generator/
 | `pipeline.py` | Shared retry loop; returns `{ story, passed, attempts, feedback }` |
 | `app.py` | Validates form input, calls pipeline, returns JSON |
 | `main.py` | Interactive CLI wrapper around the same pipeline |
-| `web/static/js/app.js` | Splits story into 2-sentence chunks; Web Speech API read-aloud with word highlighting |
+| `web/static/data/sample_stories.json` | Three curated sample stories for the landing page (no API call) |
+| `web/static/js/app.js` | Sample cards, 2-sentence chunks, Web Speech API read-aloud with word highlighting |
 
 ---
 
@@ -210,9 +241,4 @@ Response:
 - **Structured retry** — judge feedback is injected into the storyteller user prompt so revisions are targeted.
 - **Story arc prompting** — setup → gentle adventure → peaceful resolution → sleepy ending.
 - **Bedtime reader UX** — 2-sentence chunks, optional read-aloud, and a badge when the judge did not fully approve.
-
----
-
-## Header Image
-
-Add a wide banner at **`assets/header.png`** (~1200×400 px). The README references it at the top — once saved, it renders on GitHub. A moonlit forest with friendly animals (owls, foxes, monkeys in trees) fits the bedtime theme.
+- **Sample stories** — pre-written stories on the landing page so graders can try the reader without an API key.
