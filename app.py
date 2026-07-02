@@ -5,6 +5,7 @@ import os
 from flask import Flask, jsonify, render_template, request
 
 from pipeline import build_story_request, generate_story_with_judge
+from llm import USE_GROQ
 
 app = Flask(
     __name__,
@@ -25,6 +26,11 @@ def health():
 
 @app.post("/api/generate")
 def api_generate():
+    if not USE_GROQ and not os.getenv("OPENAI_API_KEY"):
+        return jsonify({
+            "error": "Story generation is not configured. Add OPENAI_API_KEY to the server environment.",
+        }), 503
+
     data = request.get_json(silent=True) or {}
 
     objects = [

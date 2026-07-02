@@ -1,0 +1,29 @@
+[
+  {
+    "id": "balloon-owl-blanket",
+    "title": "Mia and the Floating Blanket",
+    "teaser": "A red balloon, a friendly owl, and a warm blanket on a quiet hill.",
+    "objects": ["a red balloon", "a friendly owl", "a warm blanket"],
+    "age": 6,
+    "length": "medium",
+    "story": "On a soft purple evening, Mia sat on the hill behind her house with her warm blanket wrapped around her shoulders. The grass felt cool, and the first stars were beginning to blink hello.\n\nA friendly owl named Oliver swooped down and landed on a low branch. \"Hello, Mia,\" he hooted gently. \"Would you like some company?\" Mia smiled and nodded. Oliver told her about the quiet paths he flew over the forest each night.\n\nMia let go of a red balloon she had been holding. It rose slowly into the sky, glowing like a tiny sunset. \"Watch it dance with the stars,\" Oliver said. Mia watched until the balloon became a small red dot, then a memory.\n\nOliver spread his wings and flew a slow circle above her, as if tucking the hill in for the night. Mia pulled her blanket tighter and felt proud that she had shared something beautiful.\n\nWhen she walked back home, the moon lit her path. She climbed into bed, still thinking of Oliver and the balloon among the stars. Her room felt safe and warm, and sleep came softly, like a gentle hoot from a friend far away."
+  },
+  {
+    "id": "boat-key-bear",
+    "title": "The Key by the Pond",
+    "teaser": "A little boat, a magic key, and a soft teddy bear by still water.",
+    "objects": ["a little boat", "a magic key", "a soft teddy bear"],
+    "age": 8,
+    "length": "medium",
+    "story": "Sam carried his soft teddy bear, Barnaby, down to the pond where the water lay as still as a mirror. Reeds whispered along the edge, and dragonflies zipped like tiny boats of their own.\n\nHalf-hidden in the moss sat a little wooden boat, no bigger than a shoe. Beside it gleamed a magic key—not scary magic, but the kind that opens doors to kind surprises. Sam picked it up carefully. The key felt warm, as if it had been waiting just for him.\n\nHe set Barnaby in the boat and pushed it gently across the pond. The boat drifted in a slow circle, then came back to his hands as if it knew the way home. \"Some treasures are for sharing,\" Sam whispered to Barnaby, who always listened without interrupting.\n\nSam tucked the key in his pocket and decided he would use it someday to open a box of crayons for his little cousin. That felt like the best kind of magic.\n\nFireflies blinked on as Sam walked back through the garden. He brushed his teeth, climbed under his covers, and set Barnaby on the pillow beside him. The day had been small and perfect, and he fell asleep wondering what gentle adventure tomorrow might bring."
+  },
+  {
+    "id": "lantern-snail-music",
+    "title": "The Snail's Lullaby",
+    "teaser": "A glowing lantern, a garden snail, and a music box after dusk.",
+    "objects": ["a glowing lantern", "a garden snail", "a music box"],
+    "age": 5,
+    "length": "short",
+    "story": "When the sky turned sleepy blue, Leo carried a glowing lantern into the garden. The lantern made a soft circle of gold on the path, like a hug made of light.\n\nUnder a leaf, a garden snail named Dot was taking a slow evening stroll. \"Good evening, Dot,\" Leo said quietly. Dot waved one tiny feeler hello.\n\nLeo wound up his music box. A sweet tinkling song floated into the air. Dot stopped to listen, and Leo stopped too. They both stayed very still, as if the whole garden was listening with them.\n\nWhen the song ended, Leo walked Dot to a cozy patch of clover. \"Good night,\" he whispered. Dot tucked in, and Leo carried his lantern back inside.\n\nLeo placed the music box on his shelf and switched off the big light. The lantern's glow faded, but the warm feeling stayed. He closed his eyes, smiling, and drifted into a calm, happy sleep."
+  }
+]

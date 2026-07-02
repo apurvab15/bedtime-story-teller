@@ -14,9 +14,30 @@
   <div class="moon" aria-hidden="true"></div>
 
   <main class="app">
-    <!-- Setup form -->
-    <section id="setup-view" class="view active">
+    <!-- Landing -->
+    <section id="landing-view" class="view active">
       <header class="hero">
+        <h1>Bedtime Story Generator</h1>
+        <p class="subtitle">Cozy, age-safe stories for children ages 5–10. Try a sample, or create your own.</p>
+      </header>
+
+      <div class="landing-actions">
+        <button type="button" id="create-btn" class="btn btn-primary">
+          Create your own story
+        </button>
+      </div>
+
+      <section class="samples-section" aria-labelledby="samples-heading">
+        <h2 id="samples-heading" class="samples-heading">Sample stories</h2>
+        <p class="samples-intro">Pre-written examples — tap one to read aloud with word highlighting.</p>
+        <div id="sample-cards" class="sample-cards"></div>
+      </section>
+    </section>
+
+    <!-- Setup form -->
+    <section id="setup-view" class="view" hidden>
+      <header class="hero">
+        <button type="button" id="setup-back-btn" class="btn btn-ghost setup-back">← Home</button>
         <h1>Bedtime Story Generator</h1>
         <p class="subtitle">Pick three things, set the age and length, and we will tell you a cozy tale.</p>
       </header>
@@ -90,7 +111,7 @@
     <!-- Story reader -->
     <section id="reader-view" class="view" hidden>
       <header class="reader-header">
-        <button type="button" id="back-btn" class="btn btn-ghost">← New story</button>
+        <button type="button" id="back-btn" class="btn btn-ghost">← Back</button>
         <p id="judge-badge" class="judge-badge" hidden></p>
       </header>
 

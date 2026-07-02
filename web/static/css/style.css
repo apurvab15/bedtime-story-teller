@@ -113,6 +113,96 @@ body {
   line-height: 1.5;
 }
 
+.landing-actions {
+  margin-bottom: 2rem;
+}
+
+.samples-section {
+  margin-top: 0.5rem;
+}
+
+.samples-heading {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+}
+
+.samples-intro {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0 0 1rem;
+  line-height: 1.45;
+}
+
+.sample-cards {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.sample-card {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 1.1rem 1.25rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.15s, background 0.2s;
+  backdrop-filter: blur(12px);
+}
+
+.sample-card:hover {
+  border-color: rgba(255, 209, 102, 0.45);
+  background: rgba(36, 40, 72, 0.9);
+  transform: translateY(-2px);
+}
+
+.sample-card:active {
+  transform: translateY(0);
+}
+
+.sample-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+  color: var(--accent-soft);
+}
+
+.sample-card-teaser {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0 0 0.65rem;
+  line-height: 1.45;
+}
+
+.sample-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.sample-tag {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+}
+
+.setup-back {
+  display: block;
+  margin-bottom: 0.75rem;
+  padding-left: 0;
+}
+
+.judge-badge.sample {
+  background: rgba(126, 200, 227, 0.2);
+  color: var(--highlight);
+}
+
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);

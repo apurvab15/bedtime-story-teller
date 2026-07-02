@@ -1,6 +1,6 @@
 /**
  * Bedtime Story Generator — frontend
- * Form → API → chunked reader with read-aloud word highlighting
+ * Landing → form → API → chunked reader with read-aloud word highlighting
  */
 
 const RANDOM_OBJECTS = [
@@ -13,6 +13,7 @@ const RANDOM_OBJECTS = [
 
 const SENTENCES_PER_CHUNK = 2;
 
+const landingView = document.getElementById("landing-view");
 const setupView = document.getElementById("setup-view");
 const loadingView = document.getElementById("loading-view");
 const readerView = document.getElementById("reader-view");
@@ -21,6 +22,9 @@ const formError = document.getElementById("form-error");
 const ageSlider = document.getElementById("age");
 const ageValue = document.getElementById("age-value");
 const randomBtn = document.getElementById("random-btn");
+const createBtn = document.getElementById("create-btn");
+const setupBackBtn = document.getElementById("setup-back-btn");
+const sampleCardsEl = document.getElementById("sample-cards");
 const backBtn = document.getElementById("back-btn");
 const storyChunkEl = document.getElementById("story-chunk");
 const prevChunkBtn = document.getElementById("prev-chunk");
@@ -29,19 +33,73 @@ const playBtn = document.getElementById("play-btn");
 const chunkIndicator = document.getElementById("chunk-indicator");
 const judgeBadge = document.getElementById("judge-badge");
 
+const allViews = [landingView, setupView, loadingView, readerView];
+
 let chunks = [];
 let currentChunkIndex = 0;
 let speechUtterance = null;
 let isPlaying = false;
+let readerReturnView = landingView;
+let sampleStories = [];
 
 // --- Views ---
 
 function showView(view) {
-  [setupView, loadingView, readerView].forEach((el) => {
+  allViews.forEach((el) => {
     el.classList.toggle("active", el === view);
     el.hidden = el !== view;
   });
 }
+
+// --- Landing & samples ---
+
+async function loadSampleStories() {
+  try {
+    const res = await fetch("/static/data/sample_stories.json");
+    sampleStories = await res.json();
+    renderSampleCards();
+  } catch {
+    sampleCardsEl.innerHTML =
+      '<p class="samples-intro">Sample stories could not be loaded.</p>';
+  }
+}
+
+function renderSampleCards() {
+  sampleCardsEl.innerHTML = "";
+
+  sampleStories.forEach((sample) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "sample-card";
+    btn.innerHTML = `
+      <p class="sample-card-title">${escapeHtml(sample.title)}</p>
+      <p class="sample-card-teaser">${escapeHtml(sample.teaser)}</p>
+      <div class="sample-card-meta">
+        <span class="sample-tag">Age ${sample.age}</span>
+        <span class="sample-tag">${escapeHtml(sample.length)}</span>
+        <span class="sample-tag">Sample</span>
+      </div>
+    `;
+    btn.addEventListener("click", () => openSampleStory(sample));
+    sampleCardsEl.appendChild(btn);
+  });
+}
+
+function escapeHtml(text) {
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function openSampleStory(sample) {
+  readerReturnView = landingView;
+  openReader(sample.story, { isSample: true, title: sample.title });
+}
+
+createBtn.addEventListener("click", () => showView(setupView));
+setupBackBtn.addEventListener("click", () => showView(landingView));
+
+loadSampleStories();
 
 // --- Form helpers ---
 
@@ -240,7 +298,10 @@ function openReader(storyText, meta = {}) {
   chunks = groupSentences(sentences, SENTENCES_PER_CHUNK);
   currentChunkIndex = 0;
 
-  if (meta.passed) {
+  if (meta.isSample) {
+    judgeBadge.textContent = "Sample story";
+    judgeBadge.className = "judge-badge sample";
+  } else if (meta.passed) {
     judgeBadge.textContent = "✓ Approved for bedtime";
     judgeBadge.className = "judge-badge passed";
   } else {
@@ -255,7 +316,7 @@ function openReader(storyText, meta = {}) {
 
 backBtn.addEventListener("click", () => {
   stopSpeech();
-  showView(setupView);
+  showView(readerReturnView);
 });
 
 // --- API ---
@@ -289,6 +350,7 @@ storyForm.addEventListener("submit", async (e) => {
       return;
     }
 
+    readerReturnView = setupView;
     openReader(data.story, { passed: data.passed, attempts: data.attempts });
   } catch {
     showView(setupView);
@@ -296,5 +358,4 @@ storyForm.addEventListener("submit", async (e) => {
   }
 });
 
-// Stop speech when leaving the page
 window.addEventListener("beforeunload", stopSpeech);
