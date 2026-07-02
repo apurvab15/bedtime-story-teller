@@ -1,18 +1,14 @@
-<!-- p align="center">
-  <img src="assets/header.png" alt="A cozy forest at bedtime — moon, stars, and friendly animals" width="100%"/>
-</p --->
 
 <h1 align="center">🌙 Bedtime Story Generator</h1>
 
 <p align="center">
-  A prompt-driven pipeline that turns a child's story request into a safe, age-appropriate bedtime tale — reviewed by an LLM judge before it reaches the reader.
+  A prompt-driven pipeline that turns a child's story request into a safe, age-appropriate bedtime tale.
 </p>
 
 ---
 
 ## Overview
 
-This project fulfills the [Hippocratic AI](https://www.hippocraticai.com) coding assignment: given a bedtime story request, use prompting to tell a story appropriate for ages 5–10, with an **LLM judge** that improves quality and safety before output.
 
 The core idea is **responsible AI for children** — a storyteller agent writes warm, cozy tales, and a separate judge acts as a safety gate. Failed drafts are sent back with feedback for revision (up to 3 attempts).
 
